@@ -130,5 +130,10 @@ export type Options = {
    */
   out?: string;
   filter?: FilterFunction;
+  /**
+   * Switcher of enable plugin
+   * @default true
+   */
+  enabled?: boolean;
 }
 ```
