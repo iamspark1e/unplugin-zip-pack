@@ -1,7 +1,7 @@
 {
   "name": "unplugin-zip-pack",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Zip your build files with JSZip, powered by unplugin",
   "author": {
     "name": "iamspark1e",
@@ -78,7 +78,10 @@
     "build:fix": "esno scripts/postbuild.ts",
     "lint": "eslint .",
     "prepublishOnly": "npm run build",
-    "test": "vitest"
+    "test": "vitest",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postversion": "git push --follow-tags",
+    "prepare": "husky install"
   },
   "dependencies": {
     "jszip": "^3.10.1",
@@ -86,11 +89,14 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.40.2",
+    "@commitlint/config-conventional": "^17.7.0",
     "@types/node": "^20.4.9",
     "chalk": "^5.2.0",
+    "conventional-changelog-cli": "^3.0.0",
     "eslint": "^8.42.0",
     "esno": "^0.17.0",
     "fast-glob": "^3.2.12",
+    "husky": "^8.0.3",
     "rollup": "^3.23.1",
     "tsup": "^7.2.0",
     "typescript": "^5.1.3",
