@@ -1,0 +1,101 @@
+{
+  "name": "unplugin-zip-pack",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Zip your build files with JSZip, powered by unplugin",
+  "author": {
+    "name": "iamspark1e",
+    "url": "https://github.com/iamspark1e"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamspark1e/unplugin-zip-pack.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "unplugin",
+    "vite",
+    "webpack",
+    "rollup",
+    "zip",
+    "pack",
+    "bundle"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    },
+    "./vite": {
+      "types": "./dist/vite.d.ts",
+      "require": "./dist/vite.cjs",
+      "import": "./dist/vite.js"
+    },
+    "./webpack": {
+      "types": "./dist/webpack.d.ts",
+      "require": "./dist/webpack.cjs",
+      "import": "./dist/webpack.js"
+    },
+    "./rollup": {
+      "types": "./dist/rollup.d.ts",
+      "require": "./dist/rollup.cjs",
+      "import": "./dist/rollup.js"
+    },
+    "./esbuild": {
+      "types": "./dist/esbuild.d.ts",
+      "require": "./dist/esbuild.cjs",
+      "import": "./dist/esbuild.js"
+    },
+    "./nuxt": {
+      "types": "./dist/nuxt.d.ts",
+      "require": "./dist/nuxt.cjs",
+      "import": "./dist/nuxt.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "require": "./dist/types.cjs",
+      "import": "./dist/types.js"
+    },
+    "./*": "./*"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "build:fix": "esno scripts/postbuild.ts",
+    "lint": "eslint .",
+    "prepublishOnly": "npm run build",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "unplugin": "^1.3.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.40.2",
+    "@types/node": "^20.4.9",
+    "chalk": "^5.2.0",
+    "eslint": "^8.42.0",
+    "esno": "^0.17.0",
+    "fast-glob": "^3.2.12",
+    "rollup": "^3.23.1",
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.3",
+    "vite": "^4.3.9",
+    "vitest": "^0.34.1",
+    "webpack": "^5.85.0"
+  }
+}
