@@ -1,12 +1,13 @@
 import { createUnplugin } from 'unplugin'
 import type { Options, FilterFunction, MergedOptions } from './types'
 import JSZip from 'jszip'
-import { readdirSync, statSync, createReadStream, writeFileSync, readFileSync } from 'fs'
+import { readdirSync, statSync, writeFileSync, readFileSync } from 'fs'
 import { join, relative } from 'path'
 
 const defaultOptions = {
   in: "./dist",
-  out: "dist.zip"
+  out: "dist.zip",
+  enabled: true
 }
 
 function getAllFiles(dirPath: string, filterFn?: FilterFunction): string[] {
@@ -34,21 +35,26 @@ export const unplugin = createUnplugin((options: Options) => {
         const mergedOption: MergedOptions = {
           in: defaultOptions.in,
           out: defaultOptions.out,
+          enabled: defaultOptions.enabled,
           ...options
+        }
+        if (!mergedOption.enabled) {
+          console.log("[unplugin-zip-pack] skipped by user option.")
+          return;
         }
         const zip = new JSZip();
         const files = getAllFiles(mergedOption.in, mergedOption.filter)
         if (files && Array.isArray(files) && files.length) {
           files.forEach((file: string) => {
-            const fileData = readFileSync(file, {encoding: "binary"})
-            zip.file(relative(mergedOption.in, file), fileData, {binary : true})
+            const fileData = readFileSync(file, { encoding: "binary" })
+            zip.file(relative(mergedOption.in, file), fileData, { binary: true })
           })
         }
         isCompress = true
         zip.generateAsync({ type: "arraybuffer" })
           .then(function (data) {
             writeFileSync(mergedOption.out, Buffer.from(data))
-            console.log(`Success: ${mergedOption.out} has been generated.`);
+            console.log(`[unplugin-zip-pack] Success: ${mergedOption.out} has been generated.`);
           });
       })
     }
