@@ -1,7 +1,7 @@
-<h1 style="text-align:center;">unplugin-zip-pack</h1>
+<h1  align='center'>unplugin-zip-pack</h1>
 
 <p align='center'>
-  <a href="https://codecov.io/gh/iamspark1e/unplugin-zip-pack" ><img src=""/></a>
+  <!-- <a href="https://codecov.io/gh/iamspark1e/unplugin-zip-pack" ><img src=""/></a> -->
   <a href="https://www.npmjs.com/package/unplugin-zip-pack"><img src="https://img.shields.io/npm/v/unplugin-zip-pack" /></a>
   <a href="https://www.npmjs.com/package/unplugin-zip-pack"><img src="https://img.shields.io/npm/dm/unplugin-zip-pack" /></a>
 </p>
