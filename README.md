@@ -18,6 +18,36 @@
 npm i unplugin-zip-pack@latest -D # Or yarn/pnpm as you like
 ```
 
+## Configuration
+
+```typescript
+export type Options = {
+  /**
+   * Input Dir
+   * @default `./dist`
+   */
+  in?: string;
+  /**
+   * Output file name (with path)
+   * @default `dist.zip`
+   */
+  out?: string;
+  filter?: FilterFunction;
+  /**
+   * Switcher of enable plugin
+   * @default true
+   */
+  enabled?: boolean;
+  /**
+   * Hook functions run pre/post compress. (if `enabled` is set to false, hooks won't run.)
+   */
+  hooks?: {
+    pre?: Promise;
+    post?: Promise;
+  }
+}
+```
+
 ## Usage
 
 <details>
@@ -114,26 +144,3 @@ build({
 ```
 
 <br></details>
-
-## Configuration
-
-```typescript
-export type Options = {
-  /**
-   * Input Dir
-   * @default `./dist`
-   */
-  in?: string;
-  /**
-   * Output file name (with path)
-   * @default `dist.zip`
-   */
-  out?: string;
-  filter?: FilterFunction;
-  /**
-   * Switcher of enable plugin
-   * @default true
-   */
-  enabled?: boolean;
-}
-```
