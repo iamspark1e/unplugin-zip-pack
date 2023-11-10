@@ -11,6 +11,10 @@ export type Options = {
   out?: string;
   filter?: FilterFunction;
   enabled?: boolean;
+  hooks?: {
+    pre?: Function;
+    post?: Function;
+  }
 }
 export type FilterFunction = (value: string, index?: number, array?: string[]) => value is string
 export type MergedOptions = {

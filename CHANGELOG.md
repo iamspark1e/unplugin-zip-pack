@@ -1,3 +1,12 @@
+## [1.0.1-alpha.0](https://github.com/iamspark1e/unplugin-zip-pack/compare/v1.0.0...v1.0.1-alpha.0) (2023-11-05)
+
+
+### Features
+
+* support pre/post hooks, closing issue https://github.com/iamspark1e/unplugin-zip-pack/issues/1 ([3b21d25](https://github.com/iamspark1e/unplugin-zip-pack/commit/3b21d251c0c52213ed057205d060e5fd588e0481))
+
+
+
 # [1.0.0](https://github.com/iamspark1e/unplugin-zip-pack/compare/v0.0.1-beta.0...v1.0.0) (2023-08-25)
 
 

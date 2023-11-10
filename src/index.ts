@@ -32,6 +32,9 @@ export const unplugin = createUnplugin((options: Options) => {
       let isCompress = false;
       process.on("beforeExit", async () => {
         if (isCompress) return;
+        if (options.hooks && options.hooks.pre) {
+          await options.hooks.pre();
+        }
         const mergedOption: MergedOptions = {
           in: defaultOptions.in,
           out: defaultOptions.out,
@@ -52,9 +55,12 @@ export const unplugin = createUnplugin((options: Options) => {
         }
         isCompress = true
         zip.generateAsync({ type: "arraybuffer" })
-          .then(function (data) {
+          .then(async (data) => {
             writeFileSync(mergedOption.out, Buffer.from(data))
             console.log(`[unplugin-zip-pack] Success: ${mergedOption.out} has been generated.`);
+            if (options.hooks && options.hooks.post) {
+              await options.hooks.post();
+            }
           });
       })
     }
