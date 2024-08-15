@@ -2,12 +2,13 @@ import { createUnplugin } from 'unplugin'
 import type { Options, FilterFunction, MergedOptions } from './types'
 import JSZip from 'jszip'
 import { readdirSync, statSync, writeFileSync, readFileSync } from 'fs'
-import { join, relative } from 'path'
+import { join, relative, sep } from 'path'
 
 const defaultOptions = {
   in: "./dist",
   out: "dist.zip",
-  enabled: true
+  enabled: true,
+  sep: "/"
 }
 
 function getAllFiles(dirPath: string, filterFn?: FilterFunction): string[] {
@@ -17,7 +18,7 @@ function getAllFiles(dirPath: string, filterFn?: FilterFunction): string[] {
   for (const file of files) {
     const filePath = join(dirPath, file);
     if (statSync(filePath).isDirectory()) {
-      result.push(...getAllFiles(filePath));
+      result.push(...getAllFiles(filePath, filterFn))
     } else {
       result.push(filePath);
     }
@@ -36,9 +37,7 @@ export const unplugin = createUnplugin((options: Options) => {
           await options.hooks.pre();
         }
         const mergedOption: MergedOptions = {
-          in: defaultOptions.in,
-          out: defaultOptions.out,
-          enabled: defaultOptions.enabled,
+          ...defaultOptions,
           ...options
         }
         if (!mergedOption.enabled) {
@@ -50,7 +49,7 @@ export const unplugin = createUnplugin((options: Options) => {
         if (files && Array.isArray(files) && files.length) {
           files.forEach((file: string) => {
             const fileData = readFileSync(file, { encoding: "binary" })
-            zip.file(relative(mergedOption.in, file), fileData, { binary: true })
+            zip.file(relative(mergedOption.in, file).replace(new RegExp(sep === "\\" ? "\\\\" : "/", "g"), mergedOption.sep), fileData, { binary: true })
           })
         }
         isCompress = true
