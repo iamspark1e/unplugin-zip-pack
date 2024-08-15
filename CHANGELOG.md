@@ -1,3 +1,7 @@
+## [1.0.3-beta.0](https://github.com/iamspark1e/unplugin-zip-pack/compare/v1.0.2...v1.0.3-beta.0) (2024-08-15)
+
+
+
 ## [1.0.2](https://github.com/iamspark1e/unplugin-zip-pack/compare/v1.0.1...v1.0.2) (2024-07-12)
 
 
