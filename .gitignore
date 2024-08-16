@@ -79,3 +79,7 @@ typings/
 
 # IDE
 .idea
+
+# Generated test files
+test/example/dist/*
+test/example/*.zip
