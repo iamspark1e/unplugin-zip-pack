@@ -81,8 +81,7 @@
     "test": "vitest",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push --follow-tags",
-    "prepare": "husky install",
-    "test:build": "vite build"
+    "prepare": "husky install"
   },
   "dependencies": {
     "jszip": "^3.10.1",
