@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/iamspark1e/unplugin-zip-pack/compare/v1.0.3-beta.0...v1.0.3) (2024-11-26)
+
+
+### Features
+
+* 支持跨平台的自动测试 ([#7](https://github.com/iamspark1e/unplugin-zip-pack/issues/7)) ([2410099](https://github.com/iamspark1e/unplugin-zip-pack/commit/2410099d33d003c14b531e2de30ad574fcb829e5))
+
+
+
 ## [1.0.3-beta.0](https://github.com/iamspark1e/unplugin-zip-pack/compare/v1.0.2...v1.0.3-beta.0) (2024-08-15)
 
 
