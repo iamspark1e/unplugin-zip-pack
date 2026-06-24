@@ -19,7 +19,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           package-manager-cache: false
       - run: npm install -g npm@latest
-      - run: npm ci
+      - run: npm install
       - run: npm test
       - run: npm run build
       - name: Publish to NPMJS
