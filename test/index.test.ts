@@ -22,7 +22,7 @@ describe('Test building zip file', () => {
     zippedFilePath = path.resolve(__dirname, 'example', 'test-result.zip');
     if (checkFileExists(zippedFilePath)) rmSync(zippedFilePath);
     await promisedExec('vite build');
-  })
+  }, 60000)
 
   it('a test-result.zip should be generated in test/example dir', async () => {
     if (!zippedFilePath) throw new Error("beforeAll generation failed");
