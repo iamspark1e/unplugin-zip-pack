@@ -83,3 +83,4 @@ typings/
 # Generated test files
 test/example/dist/*
 test/example/*.zip
+test/.tmp

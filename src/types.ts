@@ -12,8 +12,8 @@ export type Options = {
   filter?: FilterFunction;
   enabled?: boolean;
   hooks?: {
-    pre?: Function;
-    post?: Function;
+    pre?: () => Promise<void> | void;
+    post?: () => Promise<void> | void;
   }
   sep?: string;
 }
