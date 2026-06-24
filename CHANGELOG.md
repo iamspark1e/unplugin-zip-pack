@@ -1,3 +1,9 @@
+# [1.1.0](https://github.com/iamspark1e/unplugin-zip-pack/compare/v1.0.3...v1.1.0) (2026-06-24)
+
+
+### Bug Fixes
+
+* increase beforeAll timeout to 60s for Windows CI ([65fe36e](https://github.com/iamspark1e/unplugin-zip-pack/commit/65fe36e8c92541689c368f204ea991c3b924f6e5))
 ## [1.0.3](https://github.com/iamspark1e/unplugin-zip-pack/compare/v1.0.3-beta.0...v1.0.3) (2024-11-26)
 
 
