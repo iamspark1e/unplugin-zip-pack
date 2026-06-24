@@ -1,16 +1,18 @@
 import {
-  src_default
-} from "./chunk-4SR6TTJN.js";
+  index_default
+} from "./chunk-3FWBPXD5.js";
 
 // src/nuxt.ts
 function nuxt_default(options = {}, nuxt) {
   nuxt.hook("webpack:config", async (config) => {
-    config.plugins = config.plugins || [];
-    config.plugins.unshift(src_default.webpack(options));
+    const cfg = config;
+    cfg.plugins = cfg.plugins || [];
+    cfg.plugins.unshift(index_default.webpack(options));
   });
   nuxt.hook("vite:extendConfig", async (config) => {
-    config.plugins = config.plugins || [];
-    config.plugins.push(src_default.vite(options));
+    const cfg = config;
+    cfg.plugins = cfg.plugins || [];
+    cfg.plugins.push(index_default.vite(options));
   });
 }
 export {

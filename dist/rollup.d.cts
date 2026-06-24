@@ -1,5 +1,5 @@
 import * as rollup from 'rollup';
-import { Options } from './types.js';
+import { Options } from './types.cjs';
 
 declare const _default: (options: Options) => rollup.Plugin<any> | rollup.Plugin<any>[];
 

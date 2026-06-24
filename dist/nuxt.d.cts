@@ -1,4 +1,4 @@
-import { Options } from './types.js';
+import { Options } from './types.cjs';
 
 interface NuxtInstance {
     hook: (name: string, fn: (...args: unknown[]) => void) => void;

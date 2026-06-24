@@ -55,7 +55,7 @@ export const unplugin = createUnplugin((options: Options) => {
         isCompress = true
         zip.generateAsync({ type: "arraybuffer" })
           .then(async (data) => {
-            writeFileSync(mergedOption.out, Buffer.from(data))
+            writeFileSync(mergedOption.out, new Uint8Array(data))
             console.log(`[unplugin-zip-pack] Success: ${mergedOption.out} has been generated.`);
             if (options.hooks && options.hooks.post) {
               await options.hooks.post();

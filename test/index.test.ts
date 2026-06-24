@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { exec } from 'child_process';
 import util from 'util'
 import { rmSync, statSync, accessSync, constants } from 'fs';
@@ -10,7 +10,7 @@ function checkFileExists(filePath: string) {
   try {
     accessSync(filePath, constants.F_OK);
     return true;
-  } catch (err) {
+  } catch {
     return false;
   }
 }
@@ -26,13 +26,13 @@ describe('Test building zip file', () => {
 
   it('a test-result.zip should be generated in test/example dir', async () => {
     if (!zippedFilePath) throw new Error("beforeAll generation failed");
-    let existResult = checkFileExists(zippedFilePath);
+    const existResult = checkFileExists(zippedFilePath);
     expect(existResult).toBe(true);
   })
 
   it('test-result.zip, its size should not be zero', async () => {
     if (!zippedFilePath) throw new Error("beforeAll generation failed");
-    let data = statSync(zippedFilePath);
+    const data = statSync(zippedFilePath);
     console.log(`[unplugin-zip-pack]unit-test: generated size: ${data.size}`)
     expect(data.size).toBeGreaterThan(0);
   })
