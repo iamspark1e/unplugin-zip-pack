@@ -22,11 +22,32 @@ jobs:
       - run: npm install
       - run: npm test
       - run: npm run build
+      - name: Check published package version
+        id: npm-publish-state
+        run: |
+          package_name="$(npm pkg get name --workspaces=false | tr -d '"')"
+          package_version="$(npm pkg get version --workspaces=false | tr -d '"')"
+
+          if npm view "${package_name}@${package_version}" version >/dev/null 2>&1; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "${package_name}@${package_version} is already published."
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+            echo "${package_name}@${package_version} is not published yet."
+          fi
       - name: Publish to NPMJS
+        if: steps.npm-publish-state.outputs.published != 'true'
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN || secrets.NODE_AUTH_TOKEN }}
       - name: Create Release and Upload Release Asset
-        run: npm i -g github-release-from-changelog && github-release-from-changelog
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            echo "Release $GITHUB_REF_NAME already exists, skipping."
+          else
+            npm i -g github-release-from-changelog
+            github-release-from-changelog
+          fi
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
