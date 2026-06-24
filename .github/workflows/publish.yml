@@ -3,6 +3,7 @@ on:
   push:
     tags:
       - v*
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -12,16 +13,20 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v5
-      # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v5
         with:
-          node-version: '22.x'
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
-      - run: rm -f package-lock.json && npm install
+          package-manager-cache: false
+      - run: npm install -g npm@latest
+      - run: npm ci
+      - run: npm test
       - run: npm run build
+      - name: Publish to NPMJS
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN || secrets.NODE_AUTH_TOKEN }}
       - name: Create Release and Upload Release Asset
         run: npm i -g github-release-from-changelog && github-release-from-changelog
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      - name: Publish to NPMJS
-        run: npm publish --provenance --access public

@@ -12,6 +12,10 @@
     "url": "git+https://github.com/iamspark1e/unplugin-zip-pack.git"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "unplugin",
     "vite",
