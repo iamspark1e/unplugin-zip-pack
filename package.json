@@ -78,7 +78,8 @@
     "build:fix": "esno scripts/postbuild.ts",
     "lint": "eslint .",
     "prepublishOnly": "npm run build",
-    "test": "vitest",
+    "test": "vitest --run",
+    "test:watch": "vitest",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push --follow-tags",
     "prepare": "husky"
