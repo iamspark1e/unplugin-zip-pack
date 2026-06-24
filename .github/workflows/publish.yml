@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
+      - run: rm -f package-lock.json && npm install
       - run: npm run build
       # - name: Auto Test with Coverage
       #   run: npm run coverage
