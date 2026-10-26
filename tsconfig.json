@@ -3,8 +3,9 @@
     "target": "es2017",
     "module": "esnext",
     "lib": ["esnext", "DOM"],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
     "resolveJsonModule": true
