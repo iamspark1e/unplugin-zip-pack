@@ -48,6 +48,12 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: npm
 
+      # Node 20/22 ship npm 10.x, whose arborist crashes with
+      # "Cannot read properties of null (reading 'edgesOut')" while resolving
+      # the peer sets of recent Vite releases. npm 11+ contains the fix.
+      - name: Upgrade npm
+        run: npm install --global npm@11.6.0
+
       - name: Install locked dependencies
         run: npm ci
 
@@ -55,7 +61,7 @@ jobs:
         run: npm run build
 
       - name: Install Vite compatibility target
-        run: npm install --prefix .vite-compat --no-save --package-lock=false "vite@${{ matrix.vite }}"
+        run: npm install --prefix .vite-compat --no-save --package-lock=false --ignore-scripts --no-audit --no-fund "vite@${{ matrix.vite }}"
 
       - name: Test Vite integration
         run: VITE_BIN=.vite-compat/node_modules/vite/bin/vite.js node scripts/test-vite-compat.mjs

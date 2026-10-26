@@ -84,3 +84,6 @@ typings/
 test/example/dist/*
 test/example/*.zip
 test/.tmp
+
+# Vite compatibility target installed by CI
+.vite-compat/
